@@ -1,0 +1,9 @@
+Book_id,Category,Title,Author,Price,Stock
+BK0001,Fiction,To Kill a Mockingbird,Harper Lee,10.99,5
+BK0002,Science_Fiction,The Martian,Jane Austen,9.99,3
+BK0003,Mystery,In Cold Blood,Harper Lee,12.32,7
+BK0006,mk,mk1,mk2,2.0,1
+BK0008,Comedy,dhamal,mohit,2.0,1
+BK0009,suspense,suspense book 1,author1,10.0,4
+BK0010,suspense,book4,author 1,10.0,10
+BK0011,suspence,Drishyam,mohit,2.0,0
