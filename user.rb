@@ -23,9 +23,11 @@ class User
             bookstore=BookStore.new
             bookstore.search_book_by_title
         when 3
-            Order.process_order(username)
+            order=Order.new
+            order.process_order(username)
         when 4
-            Order.order_history_display(username)
+            order=Order.new
+            order.order_history_display(username)
         when 5
          return
         else

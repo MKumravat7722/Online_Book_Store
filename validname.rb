@@ -1,5 +1,5 @@
 class ValidName
-  def self.generate_unique_book_id
+  def generate_unique_book_id
   
     csv_data = CSV.read('Book.csv', headers: true)
   numeric_part = (csv_data[(csv_data.length) -1][0]).match(/\d+/)[0].to_i

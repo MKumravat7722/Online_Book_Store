@@ -7,7 +7,7 @@ class BookStore
 def initialize
     @books = []
 end
-def self.book_title_author_exists?(title, author)
+def book_title_author_exists?(title, author)
     CSV.foreach('book.csv', headers: true) do |row|
       book_title = row['Title']
       book_author = row['Author']

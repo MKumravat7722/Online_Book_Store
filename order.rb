@@ -1,9 +1,9 @@
 require_relative('bookstore.rb')
 require 'csv'
 class Order
-  def self.process_order(curr_user)
+  def process_order(curr_user)
     puts
-    Order.search_book_for_order
+    search_book_for_order
     loop do
       puts "Please enter the book ID for processing the order or press 0 to go back"
       book_id = gets.chomp.strip
@@ -11,26 +11,26 @@ class Order
         puts "Exiting..."
         break
       end
-     book_found, order_success = Order.process_order_for_book(curr_user, book_id)
+     book_found, order_success = process_order_for_book(curr_user, book_id)
      unless book_found
         puts "Book with ID '#{book_id}' not found in the inventory."
       end
     break if order_success
     end
   end
-  def self.process_order_for_book(curr_user, book_id)
+  def process_order_for_book(curr_user, book_id)
     csv_data = CSV.read('book.csv', headers: true)
     matching_index = csv_data.find_index { |row| row['Book_id'] == book_id }
     
     if matching_index
       book_found = true
-    order_success = Order.process_order_quantity(matching_index, curr_user,csv_data)
+    order_success = process_order_quantity(matching_index, curr_user,csv_data)
       return book_found, order_success
     end
    return book_found = false, order_success = false
   end
   
-  def self.process_order_quantity(matching_index, curr_user,csv_data)
+  def process_order_quantity(matching_index, curr_user,csv_data)
     puts "Please specify the quantity"
     ordered_quantity = gets.chomp.to_i
     if ordered_quantity == 0
@@ -63,7 +63,7 @@ class Order
   
   end
 
-  def self.search_book_for_order
+  def search_book_for_order
       puts "Available Books:"
       puts "----------------------"
       CSV.foreach('book.csv').with_index(0) do |row, index|
@@ -72,7 +72,7 @@ class Order
       end
         puts "----------------------"
   end
-  def self.order_history_display(curr_user)
+  def order_history_display(curr_user)
     if File.exist?('orderhistory.csv')
       history_found = 'N'
       CSV.foreach('orderhistory.csv', headers: true) do |row|

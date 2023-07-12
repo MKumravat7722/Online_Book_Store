@@ -7,7 +7,9 @@ require 'csv'
 
 class Admin
   MAX_ATTEMPT = 3
-
+  bookstore = BookStore.new
+  order=Order.new
+  vn=ValidName.new
   def admin_panel(curr_user)
     loop do
       puts "\nAdmin Panel:"
@@ -23,13 +25,13 @@ class Admin
       when 1
         add_book
       when 2
-        bookstore = BookStore.new
+       
         bookstore.delete_book
       when 3
-        bookstore=BookStore.new
+        
         bookstore.load_books_from_csv1
       when 4
-        Order.order_history_display(curr_user)
+        order.order_history_display(curr_user)
       when 5
         break
       else
@@ -39,7 +41,7 @@ class Admin
   end
 
 def add_book
-  book_id = ValidName.generate_unique_book_id
+  book_id = vn.generate_unique_book_id
   category = get_valid_category
   return if category.nil?
 
@@ -125,7 +127,7 @@ def check_author_title(title, author)
 end
 
 def book_exists?(title, author)
-  BookStore.book_title_author_exists?(title, author)
+  bookstore.book_title_author_exists?(title, author)
 end
 
 def add_new_category(category1)
